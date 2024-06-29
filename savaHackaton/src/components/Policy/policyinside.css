@@ -1,0 +1,36 @@
+.policyInside {
+  border-radius: 50px;
+}
+
+.policyInside h4 {
+  background-color: #01a180;
+}
+
+.policy .selectDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selectDiv .submitBtn {
+  border-radius: 20px;
+  padding: 0.5rem 3rem;
+  background-color: #01a180;
+  border: 2px solid #d6d6d6;
+  color: white;
+}
+
+.selectDiv .submitBtn:hover {
+  background-color: #01a180;
+}
+
+.pagination {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.table .greenRow {
+  background-color: #01a180;
+}
+
+/* DAMAGES */

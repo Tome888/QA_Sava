@@ -1,0 +1,31 @@
+.invoices h4 {
+  text-align: center;
+  background-color: green;
+}
+
+.invoices .formControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formControls .submitBtn {
+  border-radius: 20px;
+  padding: 0.5rem 3rem;
+  background-color: #01a180;
+  border: 2px solid #d6d6d6;
+  color: white;
+}
+
+.formControls .submitBtn:hover {
+  background-color: #01a180;
+}
+
+.invoices .greenRow {
+  background-color: green;
+}
+
+.invoices .pagination {
+  margin-top: 1rem;
+  text-align: center;
+}

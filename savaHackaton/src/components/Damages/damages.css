@@ -1,0 +1,52 @@
+.damages h4 {
+  text-align: center;
+  background-color: green;
+}
+
+.damages .formControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formControls .submitBtn {
+  border-radius: 20px;
+  padding: 0.5rem 3rem;
+  background-color: #01a180;
+  border: 2px solid #d6d6d6;
+  color: white;
+}
+
+.formControls .submitBtn:hover {
+  background-color: #01a180;
+}
+
+.damages .submitDamages {
+  display: flex;
+}
+
+.damages .left {
+  flex-basis: 25%;
+}
+.damages .right {
+  flex-basis: 75%;
+  border: 1px solid black;
+  height: 100%;
+  width: 100%;
+}
+
+.damageDetails h3 {
+  background-color: green;
+}
+.iconsTecenje {
+  font-size: 7rem;
+  color: green;
+}
+
+.iconXmark {
+  color: red !important;
+}
+
+.damageWrapper {
+  display: flex;
+}
