@@ -7,7 +7,7 @@ interface PopUpZapocniProps {
 
 const PopUpZapocni: React.FC<PopUpZapocniProps> = ({ onNext }) => {
   const handleStart = () => {
-    // Call the onNext function passed from PopUp to switch to PopUpTelefon
+   
     onNext();
   };
 

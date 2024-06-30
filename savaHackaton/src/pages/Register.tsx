@@ -1,4 +1,9 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import phoneImg from "../assets/photos/phone2.png";
+import backIcon from "../assets/icons/image.png";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   FormControl,
   IconButton,
@@ -7,10 +12,8 @@ import {
   OutlinedInput,
   TextField,
   Button,
-  FormHelperText
+  FormHelperText,
 } from "@mui/material";
-import { PhoneImg } from "../components/PhoneImg";
-
 
 export function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -29,9 +32,11 @@ export function RegisterPage() {
     confirmPassword: false,
   });
 
+  const navigate = useNavigate();
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleInputChange = (event:any) => {
+  const handleInputChange = (event: any) => {
     const { id, value } = event.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -52,7 +57,7 @@ export function RegisterPage() {
     return !Object.values(errors).some((error) => error);
   };
 
-  const handleSubmit = (event:any) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     if (validateForm()) {
       const userData = {
@@ -62,113 +67,157 @@ export function RegisterPage() {
         password: formData.password,
       };
       console.log("User Data: ", userData);
+      navigate("/myProfile", { state: { showPopup: true } });
     }
   };
 
   return (
     <section className="registerSection">
+      <nav>
+        <Link to={"/"}>
+          <img className="iconBack" src={backIcon} alt="" />
+          <FontAwesomeIcon className="leftIcon" icon={faChevronLeft} />
+        </Link>
+      </nav>
+      <div className="test123">
         <div className="registerWrapper">
-      <p className="headerRegister">Регистрирај се</p>
-      <form onSubmit={handleSubmit} className="formRegister">
-        <TextField
-          fullWidth
-          id="name"
-          label="Име и Презиме"
-          variant="outlined"
-          margin="normal"
-          value={formData.name}
-          onChange={handleInputChange}
-          error={formErrors.name}
-          helperText={formErrors.name ? "Мора да внесете и име и презиме" : ""}
-          className="nameInput"
-          sx={{'& .MuiOutlinedInput-root': { borderRadius: '30px', border: '1px solid black' }}}
-          />
-        <TextField
-          fullWidth
-          id="phoneNumber"
-          label="Телефон"
-          type="text"
-          variant="outlined"
-          margin="normal"
-          value={formData.phoneNumber}
-          onChange={handleInputChange}
-          error={formErrors.phoneNumber}
-          helperText={formErrors.phoneNumber ? "Телефонскиот број мора да има точно 9 цифри" : ""}
-          sx={{'& .MuiOutlinedInput-root': { borderRadius: '30px', border: '1px solid black' }}}
-          />
-        <TextField
-          fullWidth
-          id="email"
-          label="Е-маил"
-          variant="outlined"
-          margin="normal"
-          value={formData.email}
-          onChange={handleInputChange}
-          error={formErrors.email}
-          helperText={formErrors.email ? "Невалиден е-маил" : ""}
-          sx={{'& .MuiOutlinedInput-root': { borderRadius: '30px', border: '1px solid black' }}}
-          />
-        <FormControl fullWidth variant="outlined" margin="normal" error={formErrors.password} sx={{'& .MuiOutlinedInput-root': { borderRadius: '30px', border: '1px solid black' }}}>
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <OutlinedInput
-            id="password"
-            type={showPassword ? "text" : "password"}
-            value={formData.password}
-            onChange={handleInputChange}
-            endAdornment={
-                <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  edge="end"
-                  >
-                  {showPassword ? (<i className="fa-solid fa-eye"></i>) : (<i className="fa-solid fa-eye-slash"></i>)}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
+          <p className="headerRegister">Регистрирај се</p>
+          <form onSubmit={handleSubmit} className="formRegister">
+            <TextField
+              fullWidth
+              id="name"
+              label="Име и Презиме"
+              variant="outlined"
+              margin="normal"
+              value={formData.name}
+              onChange={handleInputChange}
+              error={formErrors.name}
+              helperText={
+                formErrors.name ? "Мора да внесете и име и презиме" : ""
+              }
+              className="nameInput"
+              sx={{ "& .MuiOutlinedInput-root": { borderRadius: "30px" } }}
             />
-          {formErrors.password && <FormHelperText>Полето е задолжително</FormHelperText> }
-        </FormControl>
-        <FormControl fullWidth variant="outlined" margin="normal" error={formErrors.confirmPassword} sx={{'& .MuiOutlinedInput-root': { borderRadius: '30px', border: '1px solid black' }}}>
-          <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
-          <OutlinedInput
-            id="confirmPassword"
-            type={showPassword ? "text" : "password"}
-            value={formData.confirmPassword}
-            onChange={handleInputChange}
-            endAdornment={
-                <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  edge="end"
-                  >
-                  {showPassword ? (<i className="fa-solid fa-eye"></i>) : (<i className="fa-solid fa-eye-slash"></i>)}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Confirm Password"
+            <TextField
+              fullWidth
+              id="phoneNumber"
+              label="Телефон"
+              type="text"
+              variant="outlined"
+              margin="normal"
+              value={formData.phoneNumber}
+              onChange={handleInputChange}
+              error={formErrors.phoneNumber}
+              helperText={
+                formErrors.phoneNumber
+                  ? "Телефонскиот број мора да има точно 9 цифри"
+                  : ""
+              }
+              sx={{ "& .MuiOutlinedInput-root": { borderRadius: "30px" } }}
             />
-          {formErrors.confirmPassword && <FormHelperText>Лозинките мора да се совпаѓаат</FormHelperText>}
-        </FormControl>
-        <Button
-  type="submit"
-  variant="contained"
-  sx={{
-    backgroundColor: "#1ea282",
-    color: "white",
-    width: "50%",
-    '&:hover': {
-      backgroundColor: "#178a6d",
-    },
-  }}
->
-  Регистрирај се
-</Button>
-      </form>
-            </div>
-      <PhoneImg/>
+            <TextField
+              fullWidth
+              id="email"
+              label="Е-маил"
+              variant="outlined"
+              margin="normal"
+              value={formData.email}
+              onChange={handleInputChange}
+              error={formErrors.email}
+              helperText={formErrors.email ? "Невалиден е-маил" : ""}
+              sx={{ "& .MuiOutlinedInput-root": { borderRadius: "30px" } }}
+            />
+            <FormControl
+              fullWidth
+              variant="outlined"
+              margin="normal"
+              error={formErrors.password}
+              sx={{ "& .MuiOutlinedInput-root": { borderRadius: "30px" } }}
+            >
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <OutlinedInput
+                id="password"
+                type={showPassword ? "text" : "password"}
+                value={formData.password}
+                onChange={handleInputChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      edge="end"
+                    >
+                      {showPassword ? (
+                        <i className="fa-solid fa-eye"></i>
+                      ) : (
+                        <i className="fa-solid fa-eye-slash"></i>
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+              {formErrors.password && (
+                <FormHelperText>Полето е задолжително</FormHelperText>
+              )}
+            </FormControl>
+            <FormControl
+              fullWidth
+              variant="outlined"
+              margin="normal"
+              error={formErrors.confirmPassword}
+              sx={{ "& .MuiOutlinedInput-root": { borderRadius: "30px" } }}
+            >
+              <InputLabel htmlFor="confirmPassword">
+                Confirm Password
+              </InputLabel>
+              <OutlinedInput
+                id="confirmPassword"
+                type={showPassword ? "text" : "password"}
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      edge="end"
+                    >
+                      {showPassword ? (
+                        <i className="fa-solid fa-eye"></i>
+                      ) : (
+                        <i className="fa-solid fa-eye-slash"></i>
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Confirm Password"
+              />
+              {formErrors.confirmPassword && (
+                <FormHelperText>Лозинките мора да се совпаѓаат</FormHelperText>
+              )}
+            </FormControl>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                backgroundColor: "#1ea282",
+                color: "white",
+                width: "50%",
+                "&:hover": {
+                  backgroundColor: "#178a6d",
+                },
+              }}
+            >
+              Регистрирај се
+            </Button>
+          </form>
+        </div>
+        <div className="phoneImgWrapper">
+          <img src={phoneImg} alt="" />
+          <div className="shadow"></div>
+        </div>
+      </div>
     </section>
   );
 }

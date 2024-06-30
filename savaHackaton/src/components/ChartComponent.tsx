@@ -1,135 +1,3 @@
-// import { useState } from 'react'
-// import pfpImg from '../assets/photos/pfp img.png'
-
-
-
-// export function ChartComponent(){
-//     const [chartType, setChartType]= useState('Статистика на полиси')
-    
-//     const changeChart = (event: React.ChangeEvent<HTMLSelectElement>)=>{
-//         setChartType(event.target.value)
-//     }
-    
-
-//     return(
-//         <div className="chartMainWrapper">
-//             <div className='pfpImgWrapper'>
-//                 <img src={pfpImg} alt="" />
-//                 <p>Име Презиме</p>
-//             </div>
-//             <div>
-//                 <select onChange={(event)=>changeChart(event)} name="" id="">
-//                     <option  value='Статистика на полиси'>Статистика на полиси</option>
-//                     <option  value='Последна активност'>Последна активност</option>
-//                 </select>
-//                 {
-//                 chartType==='Статистика на полиси'? <div>Статистика на полиси</div>:<div>
-//                     Последна активност
-//                     {// add the chart here 
-//                     }
-//                     </div>  
-//                 }
-//                 {
-//                 chartType==='Статистика на полиси'? <div>Хоризонтална статистика на полиси</div>:<div>
-//                     Хоризонтална последна активност
-//                     {// add the chart here 
-//                     }
-//                     </div>  
-//                 }
-//             </div>
-//         </div>
-//     )
-// }
-
-// import React, { useState } from 'react';
-// import pfpImg from '../assets/photos/pfp img.png';
-// import { Bar } from 'react-chartjs-2';
-// import 'chart.js/auto';
-
-// const dataLastAct = {
-//     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-//     datasets: [
-//       {
-//         label: 'Dataset 1',
-//         data: [65, 59, 80, 81, 56, 55, 40],
-//         backgroundColor: '#839E99',
-//         borderRadius: 20,
-//       },
-//       {
-//         label: 'Dataset 2',
-//         data: [28, 48, 40, 19, 86, 27, 90],
-//         backgroundColor: '#01A180',
-//         borderRadius: 20,
-//       },
-//       {
-//         label: 'Dataset 3',
-//         data: [18, 48, 77, 9, 100, 27, 40],
-//         backgroundColor: '#55D1B9',
-//         borderRadius: 20,
-//       }
-//     ]
-//   };
-  
-
-// export function ChartComponent() {
-//   const [chartType, setChartType] = useState('Статистика на полиси');
-  
-//   const changeChart = (event: React.ChangeEvent<HTMLSelectElement>) => {
-//     setChartType(event.target.value);
-//   };
-
-//   return (
-//     <div className="chartMainWrapper">
-//       <div className='pfpImgWrapper'>
-//         <img src={pfpImg} alt="" />
-//         <p>Име Презиме</p>
-//       </div>
-//       <div>
-//         <select onChange={changeChart} name="" id="">
-//           <option value='Статистика на полиси'>Статистика на полиси</option>
-//           <option value='Последна активност'>Последна активност</option>
-//         </select>
-//         {chartType === 'Статистика на полиси' ? (
-//           <div>Статистика на полиси</div>
-//         ) : (
-//           <div>
-//             Последна активност
-//             <Bar data={dataLastAct} options={{
-//               scales: {
-//                 y: {
-//                   beginAtZero: true
-//                 }
-//               }
-//             }} />
-//             <p>Патничко осигурување</p>
-//             <div className="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-//             <div className="progress-bar" style={{width: '25%'}}></div>
-//             </div>
-//           </div>
-//           <p>Велосипедско осигурување</p>
-//           <div className="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-//           <div className="progress-bar" style={{width: '25%'}}></div>
-//           </div>
-//         </div>
-//         <p>Домаќинско осигурување</p>
-//             <div className="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-//             <div className="progress-bar" style={{width: '25%'}}></div>
-//             </div>
-//           </div>
-//         )}
-//         {chartType === 'Статистика на полиси' ? (
-//           <div>Хоризонтална статистика на полиси</div>
-//         ) : (
-//           <div>
-//             Хоризонтална последна активност
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
-
-
 import React, { useState } from 'react';
 import pfpImg from '../assets/photos/pfp img.png';
 import { Bar } from 'react-chartjs-2';
@@ -235,26 +103,32 @@ export function ChartComponent() {
         <img src={pfpImg} alt="" />
         <p>Име Презиме</p>
       </div>
-        <select onChange={changeChart} name="" id="">
+      <div className="selectTwo">
+
+        <select className='selectChart' onChange={changeChart} name="" id="">
           <option value='Статистика на полиси'>Статистика на полиси</option>
           <option value='Последна активност'>Последна активност</option>
         </select>
+        <select className='selectChart mright-2' >
+          <option value="jan2may">Јан - Мај</option>
+        </select>
+      </div>
         {chartType === 'Статистика на полиси' ? (
           <div className='statsPolicWrapper'>
             <Bar data={data} options={options} />
             <div>
-                <select onChange={(event) => changeActiveBars(event)} name="" id="">
+                <select className='selectChart' onChange={(event) => changeActiveBars(event)} name="" id="">
                     <option value={0}>January</option>
                     <option value={1}>February</option>
                     <option value={2}>March</option>
                 </select>
                 <div>
                 <p>Активни</p>
-                <div className="progress" style={{backgroundColor: 'transparent', border: '1px solid gray', height:'30px'}} role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                <div className="progress" style={{backgroundColor: 'transparent',border: '1px solid gray', height:'30px'}} role="progressbar" aria-label="Basic example" aria-valuenow={dataActive[selectedMonth]} aria-valuemin={0} aria-valuemax={100}>
                 <div className="progress-bar" style={{ width: `${dataActive[selectedMonth]}%`, backgroundColor: '#01A180' }}></div>
                 </div>
                 <p>Неактивни</p>
-                <div className="progress" style={{backgroundColor: 'transparent', border: '1px solid gray', height:'30px'}} role="progressbar" aria-label="Basic example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                <div className="progress" style={{backgroundColor: 'transparent', border: '1px solid gray', height:'30px'}} role="progressbar" aria-label="Basic example" aria-valuenow={dataPositive[selectedMonth]} aria-valuemin={0} aria-valuemax={100}>
                 <div className="progress-bar" style={{ width: `${dataPositive[selectedMonth]}%`, backgroundColor: '#ff4848'}}></div>
                 </div>
                 </div>
@@ -270,34 +144,38 @@ export function ChartComponent() {
               }
             }} />
             <p>Патничко осигурување</p>
-            <div className="progress" style={{backgroundColor: 'transparent', border: '1px solid gray', height:'30px'}} role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-              <div className="progress-bar" style={{ width: '25%', backgroundColor: '#839E99' }}></div>
+            <div className="progress" style={{backgroundColor: 'transparent', border: '1px solid gray', height:'30px'}} role="progressbar" aria-label="Basic example" aria-valuenow={25} aria-valuemin={0} aria-valuemax={100}>
+            <div className="progress-bar" style={{ width: '25%', backgroundColor: '#839E99' }}></div>
             </div>
             <p>Велосипедско осигурување</p>
-            <div className="progress" style={{backgroundColor: 'transparent', border: '1px solid gray', height:'30px'}} role="progressbar" aria-label="Basic example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+            <div className="progress" style={{backgroundColor: 'transparent', border: '1px solid gray', height:'30px'}} role="progressbar" aria-label="Basic example" aria-valuenow={50} aria-valuemin={0} aria-valuemax={100}>
               <div className="progress-bar" style={{ width: '50%', backgroundColor: '#01A180'}}></div>
             </div>
             <p>Домаќинско осигурување</p>
-            <div className="progress" style={{backgroundColor: 'transparent', border: '1px solid gray', height:'30px'}} role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+            <div className="progress" style={{backgroundColor: 'transparent', border: '1px solid gray', height:'30px'}} role="progressbar" aria-label="Basic example" aria-valuenow={75} aria-valuemin={0} aria-valuemax={100}>
               <div className="progress-bar" style={{ width: '75%', backgroundColor: '#55D1B9'}}></div>
             </div>
+
           </div>
         )}
         
       </div>
+      <div className='wrapperRight'>
+
       <div className='wrapperBadges'>
         <div className='badge'>
             <p style={{color: '#01A180', fontSize: '32px'}}>8</p>
-            <p>Во Тек</p>
+            <p>Во тек</p>
         </div>
         <div className='badge'>
         <p style={{color: '#01A180', fontSize: '32px'}}>12</p> 
-        <p>Заврсени</p>
+        <p>Завршени</p>
         </div>
         <div className='badge'>
          <p style={{color: '#01A180', fontSize: '32px'}}>2</p>
-         <p>Обнова</p>
+         <p>За обнова</p>
         </div>
+      </div>
       </div>
     </div>
   );

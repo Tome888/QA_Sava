@@ -3,12 +3,16 @@ import "./popupauth.css";
 import ReactInputVerificationCode from 'react-input-verification-code';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-
-const PopUpAuth = () => {
+interface PopUpTelefonProps {
+  onNext: () => void;
+}
+const PopUpAuth: React.FC<PopUpTelefonProps> = ({ onNext }) => {
   const [seconds, setSeconds] = useState(60);
   const [error, setError] = useState('');
   const [codeType, setCodeType] = useState<"password" | "text">("password");
-
+  const handleNext = () => {
+    onNext(); 
+  };
   useEffect(() => {
     if (seconds > 0) {
       const timer = setTimeout(() => setSeconds(seconds - 1), 1000);
@@ -53,7 +57,7 @@ const PopUpAuth = () => {
             </>
           )}
         </p>
-        <FontAwesomeIcon className="iconCheck" icon={faCircleCheck} />
+        <FontAwesomeIcon className="iconCheck" icon={faCircleCheck} onClick={handleNext}/>
         <p className='authHelp'>Дали ви е потребна помош?</p>
       </div>
     </div>

@@ -10,11 +10,12 @@ import { SearchBar } from './components/SearchBar';
 import { MyProfile } from './pages/MyProfile';
 
 
-import Policy from './components/MyProfileComp/Policy';
 import Damages from './components/Damages/Damages';
 import Invoices from './components/Invoices/Invoices';
+import PolicyInside from './components/Policy/PolicyInside';
 
 function App() {
+
   const router = createBrowserRouter([
     {
       path: "*",
@@ -26,23 +27,20 @@ function App() {
     {
       path: "/",
       element:<>
-      <NavBar/>
+      {/* <NavBar/> */}
       <LandingPage/>
       </> ,
     },
     {
       path: "/signIn",
       element:<>
-      <NavBar/>
       <SignInPage/>
       </> ,
     },
     {
       path: "/register",
-      element:<>
-      <NavBar/>
-      <RegisterPage/>
-      </> ,
+      element: <RegisterPage/>
+       
     },
     {
       path: "/myProfile",
@@ -63,7 +61,7 @@ function App() {
         <SideBar/>
         <PageContainer>
           <SearchBar/>
-          <Policy/>
+          <PolicyInside/>
         </PageContainer>
       </section>
        ,
@@ -115,11 +113,6 @@ function App() {
         </PageContainer>
       </section>
        ,
-    },
-    {
-      path: "/policy",
-      element:
-      <Policy />
     },
   ]);
 
